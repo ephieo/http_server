@@ -4,7 +4,10 @@ import http.helper.Utils;
 
 import java.io.*;
 import java.net.*;
-import java.nio.Buffer;
+
+
+import static http.request.RequestHandler.requestReader;
+import static http.request.RequestHandler.sendResponse;
 
 public class SocketHandler {
     ServerSocket serverSocket;
@@ -43,23 +46,7 @@ public class SocketHandler {
         Utils.print("close connection");
 
     }
-    public static void requestReader (InputStream input) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-//        String inputLine = null;
-//        while ((inputLine = reader.readLine()) != null) {
-//
-//            Utils.print(Messages.echoReceived(inputLine));
-//
-//        }
-        Utils.print(Messages.echoReceived(reader.readLine()));
-        Utils.print("done");
-
-    }
-    public static void sendResponse (OutputStream output){
-        PrintWriter writer = new PrintWriter(output,true);
-        writer.println("status: 200 OK");
-    }
     private void closeSocket (ServerSocket serverSocket, Socket clientSocket) throws IOException{
         serverSocket.close();
         clientSocket.close();
