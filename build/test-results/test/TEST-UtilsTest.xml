@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="UtilsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-18T22:09:22" hostname="Ephies-MacBook-Pro-2.local" time="0.022">
+  <properties/>
+  <testcase name="printsTextToTerminal()" classname="UtilsTest" time="0.022"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

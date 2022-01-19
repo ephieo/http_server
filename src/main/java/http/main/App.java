@@ -10,7 +10,6 @@ public class App {
 
     public static void main (String [] args) throws IOException {
        server = new Server(port);
-       System.out.println(port);
        server.runServer();
     }
 }

@@ -42,14 +42,15 @@ public class SocketHandler {
 
         requestReader(clientSocket.getInputStream());
         sendResponse(clientSocket.getOutputStream());
-        closeSocket(this.serverSocket,this.clientSocket);
-        Utils.print("close connection");
+//        closeSocket(this.serverSocket,this.clientSocket);
+
 
     }
 
     private void closeSocket (ServerSocket serverSocket, Socket clientSocket) throws IOException{
         serverSocket.close();
         clientSocket.close();
+        Utils.print("close connection");
     }
     private ServerSocket createServerSocket(Integer port) throws IOException {
      ServerSocket serverSocket = new ServerSocket(port);

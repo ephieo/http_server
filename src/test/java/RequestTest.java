@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
+
 
 import static http.request.RequestHandler.requestReader;
 import static http.request.RequestHandler.sendResponse;
@@ -28,11 +28,11 @@ public class RequestTest {
     @Test
     public void RequestDataIsRead () throws IOException {
         ByteArrayInputStream mockInput = new ByteArrayInputStream("done".getBytes());
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
 
         requestReader(mockInput);
 
-        assertEquals("http.Server received : done\ndone", outContent.toString().trim());
+        assertEquals("http.Server received : done\ndone", output.toString().trim());
     }
 }
