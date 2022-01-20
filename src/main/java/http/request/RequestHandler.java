@@ -16,15 +16,8 @@ public class RequestHandler {
 
     public static void sendResponse(OutputStream output) {
         PrintWriter writer = new PrintWriter(output, true);
-        writer.println(
-                "HTTP/1.1 200 OK\n" +
-                "Date: Mon, 27 Jul 2009 12:28:53 GMT\n" +
-                "Server: Apache/2.2.14 (Win32)\n" +
-                "Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT\n" +
-                "Content-Length: 777\n" +
-                "Content-Type: text/html\n" +
-                "Connection: Closed"
-        );
+        writer.println(" HTTP/1.1 200 OK");
+
 
     }
 }
