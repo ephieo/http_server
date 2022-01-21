@@ -17,7 +17,7 @@ public class RequestTest {
 
 
     @Test
-    public void inputSentToClient () {
+    public void inputSentToClient () throws IOException {
         ByteArrayOutputStream mockOutput = new ByteArrayOutputStream();
 
         sendResponse(mockOutput);

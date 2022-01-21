@@ -1,4 +1,5 @@
 package http.server;
+
 import http.helper.Messages;
 import http.helper.Utils;
 
@@ -14,11 +15,12 @@ public class SocketHandler {
     Socket clientSocket;
     Integer port;
 
-    public SocketHandler(Integer port){
+    public SocketHandler(Integer port) {
         this.port = port;
 
     }
-    public void createSocketConnection () throws IOException{
+
+    public void createSocketConnection() throws IOException {
         try {
             this.serverSocket = createServerSocket(port);
 
@@ -29,32 +31,44 @@ public class SocketHandler {
 
         Utils.print(Messages.listeningForConnection());
 
-        try {
+        while (true) {
 
-            this.clientSocket = acceptSocketConnection(serverSocket);
-            Utils.print("open connection");
+            try {
 
-        } catch (IOException e) {
-            Utils.exitErrorMessage(Messages.acceptFailed(), e);
+                this.clientSocket = acceptSocketConnection(serverSocket);
+                Utils.print("open connection");
+
+            } catch (IOException e) {
+                Utils.exitErrorMessage(Messages.acceptFailed(), e);
 
 
+            }
+
+            requestReader(clientSocket.getInputStream());
+            sendResponse(clientSocket.getOutputStream());
+            closeClientSocket(clientSocket);
+//            closeServerSocket(serverSocket);
         }
 
-        requestReader(clientSocket.getInputStream());
-        sendResponse(clientSocket.getOutputStream());
 //        closeSocket(this.serverSocket,this.clientSocket);
 
 
     }
 
-    private void closeSocket (ServerSocket serverSocket, Socket clientSocket) throws IOException{
-        serverSocket.close();
+    private void closeClientSocket(Socket clientSocket) throws IOException {
         clientSocket.close();
-        Utils.print("close connection");
+        Utils.print("close client connection");
     }
+
+    private void closeServerSocket(ServerSocket serverSocket) throws IOException {
+        serverSocket.close();
+
+        Utils.print("close server connection");
+    }
+
     private ServerSocket createServerSocket(Integer port) throws IOException {
-     ServerSocket serverSocket = new ServerSocket(port);
-     return serverSocket;
+        ServerSocket serverSocket = new ServerSocket(port);
+        return serverSocket;
     }
 
     private Socket acceptSocketConnection(ServerSocket serverSocket) throws IOException {
