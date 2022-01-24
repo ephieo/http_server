@@ -6,9 +6,8 @@ import http.helper.Utils;
 import java.io.*;
 import java.net.*;
 
+import static http.request.RequestHandler.*;
 
-import static http.request.RequestHandler.requestReader;
-import static http.request.RequestHandler.sendResponse;
 
 public class SocketHandler {
     ServerSocket serverSocket;
@@ -45,12 +44,13 @@ public class SocketHandler {
             }
 
             requestReader(clientSocket.getInputStream());
+            setupResponse();
             sendResponse(clientSocket.getOutputStream());
             closeClientSocket(clientSocket);
-//            closeServerSocket(serverSocket);
+
         }
 
-//        closeSocket(this.serverSocket,this.clientSocket);
+
 
 
     }
