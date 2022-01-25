@@ -51,10 +51,9 @@ public class RequestParserTest {
     public void checkThatFormattedResponseIsReturned() {
         setRequestType("GET / HTTP/1.1");
         setHeaders("text/html");
-        System.out.println(requestBody + "*****************");
         setRequestBody("hello".getBytes(StandardCharsets.UTF_8));
         setStatus("200", "well done :)");
-        System.out.println(requestBody + "*****************");
+
 
         String fakeFormattedRequest = "GET / HTTP/1.1" + "\n"
                 + "Content-Type: " + "text/html" + "\n"
