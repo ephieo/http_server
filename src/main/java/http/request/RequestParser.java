@@ -1,5 +1,7 @@
 package http.request;
 
+
+
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -15,8 +17,13 @@ public class RequestParser {
         startLine = requestData;
 
     }
+    public static String getRequestType  (){
 
-    public static String getRequestType() {
+        String[] splitData =  startLine.split("/");
+
+        return splitData[0].trim();
+    }
+    public static String getStartLine() {
         System.out.println(startLine);
         return startLine;
     }

@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 import static http.request.RequestParser.*;
 
-public class RequestHandler {
+public class RequestRouter {
     public static void requestReader(InputStream input) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 

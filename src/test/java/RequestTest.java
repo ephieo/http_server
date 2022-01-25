@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 
-import static http.request.RequestHandler.requestReader;
-import static http.request.RequestHandler.sendResponse;
+import static http.request.RequestRouter.requestReader;
+import static http.request.RequestRouter.sendResponse;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

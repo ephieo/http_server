@@ -1,20 +1,25 @@
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+
 
 import static http.request.RequestParser.*;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RequestParserTest {
 
+    @Test
+    public void returnRequestType() {
+        setRequestType("GET / HTTP/1.1");
 
+        assertEquals(getRequestType(), "GET".trim());
+
+    }
     @Test
     public void checkThatAStartLineDataIsSet() {
         setRequestType("GET / HTTP/1.1");
 
-        assertEquals(getRequestType(), "GET / HTTP/1.1".trim());
+        assertEquals(getStartLine(), "GET / HTTP/1.1".trim());
 
     }
 
