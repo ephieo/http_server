@@ -22,7 +22,7 @@ public class RequestRouter {
 
     public static void setupResponse() {
         setHeaders("text/html");
-        setRequestBody("hello".getBytes(StandardCharsets.UTF_8));
+        setRequestBody("".getBytes(StandardCharsets.UTF_8));
         setStatus("200", "well done :)");
     }
 

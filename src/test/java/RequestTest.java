@@ -1,3 +1,4 @@
+import http.request.Request;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -34,5 +35,21 @@ public class RequestTest {
         requestReader(mockInput);
 
         assertEquals("http.Server received : done\ndone", output.toString().trim());
+    }
+    @Test
+    public void checkThatRequestClassValuesAreAssigned (){
+        ByteArrayInputStream mockInput = new ByteArrayInputStream("hello".getBytes());
+        Request request = new Request();
+        request.setMethod("GET");
+        request.setPath("/hello");
+        request.setHeaders("Content-Length","11");
+        request.setBody("hello");
+
+
+        assertEquals(request.getMethod(),"GET");
+        assertEquals(request.getPath(),"/hello");
+        assertEquals(request.getHeaders().get("Content-Length"),"11");
+        assertEquals(request.getBody(),"hello");
+
     }
 }

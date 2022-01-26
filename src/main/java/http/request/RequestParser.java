@@ -6,10 +6,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class RequestParser {
-    public static String startLine;
+    private static String startLine;
     public static HashMap<String, String> headers = new HashMap<>();
-    public static String statusCode;
-    public static String statusMessage;
+    private static String statusCode;
+    private static String statusMessage;
     public static byte[] requestBody ;
 
     public static void setRequestType(String requestData) {
@@ -27,6 +27,9 @@ public class RequestParser {
         System.out.println(startLine);
         return startLine;
     }
+//    public Request parseRequest (){
+//
+//    }
 
     public static void setHeaders( String value) {
         headers.put("Content-Type", value);
@@ -62,10 +65,11 @@ public class RequestParser {
     }
 
     public static String formatRequestBody() {
+        String bytes = new String(requestBody, StandardCharsets.UTF_8);
         String formattedRequest = startLine + "\n"
                 + "Content-Type: " + headers.get("Content-Type") + "\n"
                 + "Content-Length: " + requestBody.toString().length() + "\n"
-                + "Body{ " + "\n" + requestBody + "\n" + "}";
+                + "Body{ " + "\n" + bytes + "\n" + "}";
         return formattedRequest;
     }
 
