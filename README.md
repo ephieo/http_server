@@ -1,4 +1,4 @@
-# Echo echo.Server
+# HTTP Server
 
 Building a http sever in Java to learn more about Java, sockets and software delivery.
 
