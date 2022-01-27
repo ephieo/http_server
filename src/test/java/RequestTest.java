@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 
 import static http.request.RequestRouter.requestReader;
-import static http.request.RequestRouter.sendResponse;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,14 +17,14 @@ public class RequestTest {
 
 
 
-    @Test
-    public void inputSentToClient () throws IOException {
-        ByteArrayOutputStream mockOutput = new ByteArrayOutputStream();
-
-        sendResponse(mockOutput);
-
-        assertArrayEquals("status: 200 OK\n".getBytes(), mockOutput.toByteArray());
-    }
+//    @Test
+//    public void inputSentToClient () throws IOException {
+//        ByteArrayOutputStream mockOutput = new ByteArrayOutputStream();
+//
+//        sendResponse(mockOutput);
+//
+//        assertArrayEquals("status: 200 OK\n".getBytes(), mockOutput.toByteArray());
+//    }
 
     @Test
     public void RequestDataIsRead () throws IOException {
@@ -38,7 +38,6 @@ public class RequestTest {
     }
     @Test
     public void checkThatRequestClassValuesAreAssigned (){
-        ByteArrayInputStream mockInput = new ByteArrayInputStream("hello".getBytes());
         Request request = new Request();
         request.setMethod("GET");
         request.setPath("/hello");
