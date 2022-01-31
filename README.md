@@ -6,7 +6,7 @@ Building a http sever in Java to learn more about Java, sockets and software del
 ### How to run app
 
 - Clone the repo
-- If running in vs code :
+### * If running in vs code :
 - run `./gradlew build` to build the gradle project.
 - Then run `./gradlew run` to run the project.
 - If running in intellij :
