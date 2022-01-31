@@ -34,14 +34,6 @@ public class RequestRouter {
 
 
 
-//    public static void sendResponse(OutputStream output) throws IOException {
-//
-//        String response = formatRequestBody();
-//
-//        output.write(response.getBytes());
-//        output.flush();
-//
-//    }
 }
 
 

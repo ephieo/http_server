@@ -16,25 +16,15 @@ public class RequestTest {
 
 
 
-
-//    @Test
-//    public void inputSentToClient () throws IOException {
-//        ByteArrayOutputStream mockOutput = new ByteArrayOutputStream();
-//
-//        sendResponse(mockOutput);
-//
-//        assertArrayEquals("status: 200 OK\n".getBytes(), mockOutput.toByteArray());
-//    }
-
     @Test
     public void RequestDataIsRead () throws IOException {
-        ByteArrayInputStream mockInput = new ByteArrayInputStream("done".getBytes());
+        ByteArrayInputStream mockInput = new ByteArrayInputStream("done\noutput read".getBytes());
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
         requestReader(mockInput);
 
-        assertEquals("http.Server received : done\ndone", output.toString().trim());
+        assertEquals("http.Server received : done\noutput read", output.toString().trim());
     }
     @Test
     public void checkThatRequestClassValuesAreAssigned (){

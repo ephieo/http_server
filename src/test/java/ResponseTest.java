@@ -18,7 +18,9 @@ public class ResponseTest {
         Response response = new Response(mockOutput);
         response.setStatus(1234,"hello");
         response.setHeaders("Content-Type","text");
-        response.addBody("world".getBytes());
+        response.setBody("world".getBytes());
+
+
 
         assertEquals(response.getStatusMessage(),"hello");
         assertEquals(response.getStatusCode(),1234);

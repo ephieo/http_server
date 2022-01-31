@@ -27,7 +27,7 @@ public class Response {
     public int getStatusCode() {
         return this.statusCode;
     }
-    public void setHeaders(String key, String value) {
+    public void addHeaders(String key, String value) {
         this.headers.put(key, value);
 
     }
@@ -36,8 +36,8 @@ public class Response {
         return this.headers;
     }
 
-    public void addBody(byte[] body) {
-        setHeaders("Content-Length", Integer.toString(body.length));
+    public void setBody(byte[] body) {
+        addHeaders("Content-Length", Integer.toString(body.length));
         this.body = body;
     }
 
