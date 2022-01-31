@@ -16,7 +16,7 @@ public class Messages {
         return "***Successful*** " + serverSocket;
     }
 
-    public static String echoReceived (String inputLine) {
+    public static String httpReceived (String inputLine) {
         return "http.Server received : " + inputLine;
     }
 

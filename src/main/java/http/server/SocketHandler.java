@@ -44,8 +44,7 @@ public class SocketHandler {
             }
 
             requestReader(clientSocket.getInputStream());
-            setupResponse();
-            sendResponse(clientSocket.getOutputStream());
+
             closeClientSocket(clientSocket);
 
         }

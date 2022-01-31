@@ -8,34 +8,42 @@ public class Response {
     private OutputStream output;
     private int statusCode;
     private String statusMessage;
-    private Map<String,String> headers = new HashMap();
+    private Map<String, String> headers = new HashMap();
     private byte[] body;
 
-    public Response (OutputStream output){
+    public Response(OutputStream output) {
         this.output = output;
     }
 
 
-   public void setStatus(int code, String message){
+    public void setStatus(int code, String message) {
         this.statusCode = code;
         this.statusMessage = message;
-   }
-
-   public void setHeaders (String key, String value){
-        this.headers.put(key,value);
-
-   }
-    public Map<String,String>  getHeaders (){
-      return this.headers;
     }
 
-    public void addBody (byte[] body){
-        setHeaders("Content-Length",Integer.toString(body.length));
+    public String getStatusMessage() {
+        return this.statusMessage;
+    }
+    public int getStatusCode() {
+        return this.statusCode;
+    }
+    public void addHeaders(String key, String value) {
+        this.headers.put(key, value);
+
+    }
+
+    public Map<String, String> getHeaders() {
+        return this.headers;
+    }
+
+    public void setBody(byte[] body) {
+        addHeaders("Content-Length", Integer.toString(body.length));
         this.body = body;
     }
 
-    public void buildResponse(){
-
+    public byte[] getBody() {
+        return this.body;
     }
+
 
 }
