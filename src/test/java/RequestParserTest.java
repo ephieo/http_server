@@ -1,16 +1,15 @@
 import http.request.Request;
-import http.request.RequestRouter;
+import http.request.RequestParser;
 import org.junit.jupiter.api.Test;
 
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RequestRouterTest {
+public class RequestParserTest {
 
     @Test
     public void parseRequestData() {
-        RequestRouter requestRouter = new RequestRouter();
+        RequestParser requestRouter = new RequestParser();
         String requestData = "GET /hello HTTP/1.1";
 
         String[] splitData = requestRouter.parseRequest(requestData);
@@ -22,10 +21,10 @@ public class RequestRouterTest {
 
     @Test
     public void checkThatRequestIsBuilt (){
-        RequestRouter requestRouter = new RequestRouter();
+        RequestParser requestParser = new RequestParser();
         String[] requestData = {"GET", "/hello", "HTTP/1.1"};
 
-        Request request = requestRouter.buildRequest(requestData[0],requestData[1],requestData[2]);
+        Request request = requestParser.buildRequest(requestData[0],requestData[1],requestData[2]);
 
         assertEquals(request.getMethod(),"GET");
     }

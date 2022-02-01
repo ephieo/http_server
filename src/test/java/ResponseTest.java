@@ -17,7 +17,7 @@ public class ResponseTest {
         ByteArrayOutputStream mockOutput = new ByteArrayOutputStream();
         Response response = new Response(mockOutput);
         response.setStatus(1234,"hello");
-        response.setHeaders("Content-Type","text");
+        response.addHeaders("Content-Type","text");
         response.setBody("world".getBytes());
 
 
