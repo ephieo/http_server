@@ -1,10 +1,7 @@
 import http.request.Request;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 
 import static http.request.RequestParser.requestReader;
@@ -19,10 +16,11 @@ public class RequestTest {
     @Test
     public void RequestDataIsRead () throws IOException {
         ByteArrayInputStream mockInput = new ByteArrayInputStream("done\noutput read".getBytes());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(mockInput));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        requestReader(mockInput);
+        requestReader(reader);
 
         assertEquals("http.Server received : done\noutput read", output.toString().trim());
     }

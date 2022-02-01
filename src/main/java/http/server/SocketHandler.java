@@ -2,6 +2,8 @@ package http.server;
 
 import http.helper.Messages;
 import http.helper.Utils;
+import http.router.Router;
+import http.router.SetupRouter;
 
 import java.io.*;
 import java.net.*;
@@ -41,8 +43,9 @@ public class SocketHandler {
 
 
             }
+            Router router = new SetupRouter().setupRouter();
+            router.makeRouterRequest(clientSocket);
 
-//            requestReader(clientSocket.getInputStream());
 
             closeClientSocket(clientSocket);
 

@@ -46,4 +46,17 @@ public class Response {
     }
 
 
+
+    public void sendResponse () throws IOException {
+         if (this.body == null){  this.body = "".getBytes(); };
+        String formattedRequest =
+                "Content-Type: " + headers.get("Content-Type") + "\n"
+                + "Content-Length: " + body.toString().length() + "\n"
+                + "Body{ " + "\n" + new String( body, "US-ASCII") + "\n" + "}";
+
+        output.write(formattedRequest.getBytes());
+
+    }
+
+
 }
