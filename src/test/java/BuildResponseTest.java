@@ -1,8 +1,7 @@
-import http.helper.Utils;
 import http.response.BuildResponse;
 import org.junit.jupiter.api.Test;
 
-import java.io.UnsupportedEncodingException;
+
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -31,7 +30,7 @@ public class BuildResponseTest {
 
     }
     @Test
-    public void checkThatHeadersLineIsReturned () throws UnsupportedEncodingException {
+    public void checkThatHeadersLineIsReturned () {
         BuildResponse build = new BuildResponse();
         Map<String,String> headers = new HashMap<>();
         headers.put("Content-Type","text/html");

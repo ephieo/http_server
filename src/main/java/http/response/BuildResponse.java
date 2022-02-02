@@ -1,7 +1,5 @@
 package http.response;
 
-import http.helper.Utils;
-
 import java.util.*;
 
 public class BuildResponse {
