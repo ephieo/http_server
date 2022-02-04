@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 
-import static http.request.RequestParser.requestReader;
+//import static http.request.RequestParser.requestReader;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ public class RequestTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        requestReader(reader);
+//        requestReader(reader);
 
         assertEquals("http.Server received : done\noutput read", output.toString().trim());
     }

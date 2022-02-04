@@ -1,6 +1,7 @@
 package http.router;
 
 
+import http.handlers.RouteNotFound;
 import http.helper.Handler;
 import http.helper.Messages;
 import http.helper.Utils;
@@ -27,9 +28,8 @@ public class Router {
 
      try{
          String[] parsedRequest = parseRequest(reader.readLine());
-         System.out.println(parsedRequest[0]+parsedRequest[1]+parsedRequest[2]);
          Request request = buildRequest(parsedRequest[0],parsedRequest[1],parsedRequest[2]);
-         requestReader(reader);
+         response.setProtocol(parsedRequest[2]);
          Handler handler = fetchHandler(request);
          handler.setResponseValues(request,response);
      }catch(Error err){
@@ -52,7 +52,7 @@ public class Router {
 
  public Handler fetchHandler (Request request){
      Route route = routes.get(request.getPath());
-     return  route != null ? route.getHandler(request.getMethod()) : null;
+     return  route != null ? route.getHandler(request.getMethod()) : RouteNotFound.getHandler();
  }
 
 

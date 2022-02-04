@@ -1,5 +1,6 @@
 package http.router;
 
+import http.handlers.RouteNotFound;
 import http.helper.Handler;
 
 import java.util.*;
@@ -18,6 +19,6 @@ public Route addHandler (String methodVerb, Handler handler){
 }
 
 public Handler getHandler (String methodVerb) {
- return methodHandlers.containsKey(methodVerb) ? methodHandlers.get(methodVerb) : null;
+ return methodHandlers.containsKey(methodVerb) ? methodHandlers.get(methodVerb) : RouteNotFound.getHandler();
 }
 }

@@ -2,6 +2,7 @@ import http.response.BuildResponse;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -25,22 +26,34 @@ public class BuildResponseTest {
         BuildResponse build = new BuildResponse();
         String headerKey = "Age";
         String headerValue = "7777";
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","text/html");
+        headers.put("Age","7777");
+        headers.put("Connection","Kept-Alive");
 
-        assertEquals(build.parseHeaderLine(headerKey,headerValue),"Age : 7777\n\r");
+        assertEquals(build.parseHeaderLine(headerKey,headers),"Age : 7777\n\r");
 
     }
     @Test
-    public void checkThatHeadersLineIsReturned () {
+    public void checkThatHeadersLineIsReturned () throws IOException {
         BuildResponse build = new BuildResponse();
         Map<String,String> headers = new HashMap<>();
         headers.put("Content-Type","text/html");
         headers.put("Age","7777");
         headers.put("Connection","Kept-Alive");
 
+        String[] startLine = "HTTP/1.1 200 OK".split(" ");
+        byte[] formatStartLine = (startLine[0] + " " + startLine[1] + " " + startLine[2]).getBytes();
+
         byte[] formattedHeader = ("Connection : Kept-Alive\n\r" + "Age : 7777\n\r" + "Content-Type : text/html\n\r").getBytes();
 
-        assertArrayEquals(build.buildHeaderLine(headers), formattedHeader);
+        assertArrayEquals(build.buildHeaderLine(formatStartLine, headers), formattedHeader);
 
+
+    }
+    @Test
+    public void checkThatResponseBodyIsBuilt (){
+        BuildResponse build = new BuildResponse();
 
     }
 }

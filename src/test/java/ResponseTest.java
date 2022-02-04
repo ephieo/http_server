@@ -19,6 +19,7 @@ public class ResponseTest {
         response.setStatus(1234,"hello");
         response.addHeaders("Content-Type","text");
         response.setBody("world".getBytes());
+        response.setProtocol("HTTP/1.1");
 
 
 
@@ -27,6 +28,7 @@ public class ResponseTest {
         assertEquals(response.getHeaders().get("Content-Length"),"5");
         assertEquals(response.getHeaders().get("Content-Type"),"text");
         assertArrayEquals(response.getBody(),"world".getBytes());
+        assertEquals(response.getProtocol(),"HTTP/1.1");
 
     }
 }

@@ -10,13 +10,13 @@ import java.nio.Buffer;
 public class RequestParser {
 
 
-    public static void requestReader(BufferedReader reader) throws IOException {
-
-        Utils.print(Messages.httpReceived(reader.readLine()));
-        Utils.print("output read");
-
-
-    }
+//    public static void requestReader(BufferedReader reader) throws IOException {
+//
+//        Utils.print(Messages.httpReceived(reader.readLine()));
+//        Utils.print("output read");
+//
+//
+//    }
 
 
     public static String[] parseRequest(String requestLine) {
