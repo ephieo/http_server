@@ -61,12 +61,16 @@ public class Response {
 
 
     public void sendResponse() throws IOException {
-        BuildResponse build = new BuildResponse();
+//        headers.put("Keep-Alive","1000");
+        headers.put("Date","Mon, 04 Nov 2019 11:59:33 GMT");
         headers.put("Connection", "Close");
+        BuildResponse build = new BuildResponse();
         byte[] response = build.buildResponseBody(protocol, statusCode, statusMessage, headers, body);
-        Utils.print("response is built....." + new String(response, StandardCharsets.UTF_8));
-        output.flush();
+//        Utils.print("response is built.....\n\r" + new String(response, StandardCharsets.UTF_8));
+
+
         output.write(response);
+
     }
 
 

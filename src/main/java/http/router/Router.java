@@ -15,46 +15,46 @@ import java.util.*;
 import static http.request.RequestParser.*;
 
 public class Router {
- private Map<String, Route> routes = new HashMap<>();
+    private Map<String, Route> routes = new HashMap<>();
 
- public Map<String, Route> getRoutes(){
-     return routes;
- }
+    public Map<String, Route> getRoutes() {
 
- public void makeRouterRequest (Socket clientSocket) throws IOException {
-     OutputStream output = clientSocket.getOutputStream();
-     BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-     Response response = new Response(output);
+        return routes;
+    }
 
-     try{
-         String[] parsedRequest = parseRequest(reader.readLine());
-         Request request = buildRequest(parsedRequest[0],parsedRequest[1],parsedRequest[2]);
-         response.setProtocol(parsedRequest[2]);
-         Handler handler = fetchHandler(request);
-         handler.setResponseValues(request,response);
-     }catch(Error err){
-         System.out.println(err);
-     }
+    public void makeRouterRequest(Socket clientSocket) throws IOException {
+        OutputStream output = clientSocket.getOutputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        Response response = new Response(output);
 
-
-     response.sendResponse();
+        try {
+            String[] parsedRequest = parseRequest(reader.readLine());
+            Request request = buildRequest(parsedRequest[0], parsedRequest[1], parsedRequest[2]);
+            response.setProtocol(parsedRequest[2]);
+            Handler handler = fetchHandler(request);
+            handler.setResponseValues(request, response);
+        } catch (Error err) {
+            System.out.println(err);
+        }
 
 
- }
+        response.sendResponse();
 
 
- public Route addRoute(String path, String method, Handler handler){
-     Route route = routes.computeIfAbsent(path, (key) -> new Route());
-     route.addHandler(method,handler);
-     return route;
- }
+    }
 
 
- public Handler fetchHandler (Request request){
-     Route route = routes.get(request.getPath());
-     return  route != null ? route.getHandler(request.getMethod()) : RouteNotFound.getHandler();
- }
+    public Route addRoute(String path, String method, Handler handler) {
+        Route route = routes.computeIfAbsent(path, (key) -> new Route());
+        route.addHandler(method, handler);
+        return route;
+    }
 
+
+    public Handler fetchHandler(Request request) {
+        Route route = routes.get(request.getPath());
+        return route != null ? route.getHandler(request.getMethod()) : RouteNotFound.getHandler();
+    }
 
 
 }

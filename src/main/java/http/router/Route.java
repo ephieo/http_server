@@ -22,3 +22,5 @@ public Handler getHandler (String methodVerb) {
  return methodHandlers.containsKey(methodVerb) ? methodHandlers.get(methodVerb) : RouteNotFound.getHandler();
 }
 }
+
+//{"simple_get" : { "GET" : ((request,response)->{response.addHeader()})}}
