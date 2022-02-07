@@ -1,6 +1,7 @@
 package http.router;
 
 import http.handlers.HeadHandler;
+import http.handlers.OptionsHandler;
 import http.handlers.RouteNotFound;
 import http.helper.Handler;
 
@@ -25,7 +26,7 @@ public Handler getHandler (String methodVerb) {
 }
 
 public void createDefaultHandlers (){
-    methodHandlers.putIfAbsent("OPTIONS",((request,response)->{}));
+    methodHandlers.putIfAbsent("OPTIONS", OptionsHandler.getHandler(methodHandlers.keySet()));
     methodHandlers.putIfAbsent("HEAD", HeadHandler.getHandler());
     methodHandlers.putIfAbsent("POST",((request,response)->{}));
     methodHandlers.putIfAbsent("PUT",((request,response)->{}));

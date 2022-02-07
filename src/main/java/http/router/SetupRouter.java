@@ -36,6 +36,8 @@ public class SetupRouter {
 
         }));
 
+        router.addRoute("/method_options","GET", ((request,response)->{}));
+
         return router;
     }
 

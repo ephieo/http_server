@@ -1,6 +1,7 @@
 
 
 
+import http.handlers.HeadHandler;
 import http.helper.Handler;
 import http.helper.Utils;
 import http.request.Request;
@@ -135,6 +136,29 @@ public class SetupRoutesTest {
 
 
     }
+
+    //Test for /method_options route
+
+    @Test
+    public void checkThatOptionsRouteIsSetupCorrectly (){
+
+        Handler handler = router.getRoutes().get("/method_options").getHandler("OPTIONS");
+        handler.setResponseValues(request,response);
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","text/html");
+        headers.put("Content-Length", "0");
+        headers.put("Allow","GET, HEAD, OPTIONS, POST, PUT");
+
+
+        assertTrue(routes.contains("/method_options"));
+        assertEquals(getResponseStatusCode(),200);
+        assertEquals(getResponseHeaders(),headers);
+
+
+    }
+
+
 
 
 }
