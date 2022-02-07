@@ -1,5 +1,6 @@
 package http.router;
 
+import http.handlers.HeadHandler;
 import http.handlers.RouteNotFound;
 import http.helper.Handler;
 
@@ -15,12 +16,21 @@ public Map<String,Handler> getAllHandlers (){
 
 public Route addHandler (String methodVerb, Handler handler){
      methodHandlers.putIfAbsent(methodVerb,handler);
+     createDefaultHandlers();
      return this;
 }
 
 public Handler getHandler (String methodVerb) {
  return methodHandlers.containsKey(methodVerb) ? methodHandlers.get(methodVerb) : RouteNotFound.getHandler();
 }
+
+public void createDefaultHandlers (){
+    methodHandlers.putIfAbsent("OPTIONS",((request,response)->{}));
+    methodHandlers.putIfAbsent("HEAD", HeadHandler.getHandler());
+    methodHandlers.putIfAbsent("POST",((request,response)->{}));
+    methodHandlers.putIfAbsent("PUT",((request,response)->{}));
+
+}
 }
 
-//{"simple_get" : { "GET" : ((request,response)->{response.addHeader()})}}
+
