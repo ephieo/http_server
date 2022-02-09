@@ -41,18 +41,6 @@ public class Router {
             System.out.println(err);
         }
 
-//        try {
-//            String[] parsedRequest = parseRequest(reader.readLine());
-//            System.out.println(Arrays.toString(parsedRequest));
-//            Request request = buildRequest(parsedRequest[0], parsedRequest[1], parsedRequest[2]);
-//            response.setProtocol(parsedRequest[2]);
-//            Handler handler = fetchHandler(request);
-//            handler.setResponseValues(request, response);
-//        } catch (Error err) {
-//            System.out.println(err);
-//        }
-//
-//
         response.sendResponse();
 
 
