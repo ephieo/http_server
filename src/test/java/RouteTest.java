@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import http.router.Route;
 
-
-import java.io.ByteArrayOutputStream;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,8 +33,6 @@ public class RouteTest {
 
         assertTrue(methods.contains("OPTIONS"));
         assertTrue(methods.contains("HEAD"));
-        assertTrue(methods.contains("POST"));
-        assertTrue(methods.contains("PUT"));
     }
 
 }

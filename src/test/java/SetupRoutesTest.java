@@ -1,9 +1,6 @@
 
-
-
-import http.handlers.HeadHandler;
 import http.helper.Handler;
-import http.helper.Utils;
+
 import http.request.Request;
 import http.response.Response;
 import http.router.Router;
@@ -148,7 +145,7 @@ public class SetupRoutesTest {
         Map<String,String> headers = new HashMap<>();
         headers.put("Content-Type","text/html");
         headers.put("Content-Length", "0");
-        headers.put("Allow","GET, HEAD, OPTIONS, POST, PUT");
+        headers.put("Allow","GET, HEAD, OPTIONS");
 
 
         assertTrue(routes.contains("/method_options"));
@@ -158,6 +155,74 @@ public class SetupRoutesTest {
 
     }
 
+    //Test for /method_options2 route
+    @Test
+    public void checkThatOptions2RouteIsSetupCorrectly (){
+
+        Handler handler = router.getRoutes().get("/method_options2").getHandler("OPTIONS");
+        handler.setResponseValues(request,response);
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","text/html");
+        headers.put("Content-Length", "0");
+        headers.put("Allow","GET, HEAD, OPTIONS, POST, PUT");
+
+
+        assertTrue(routes.contains("/method_options2"));
+        assertEquals(getResponseStatusCode(),200);
+        assertEquals(getResponseHeaders(),headers);
+
+
+    }
+
+    @Test
+    public void checkThatHeadRequestRouteIsSetupCorrectly (){
+
+        Handler handler = router.getRoutes().get("/head_request").getHandler("GET");
+        handler.setResponseValues(request,response);
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Length", "0");
+
+
+        assertTrue(routes.contains("/head_request"));
+        assertEquals(getResponseStatusCode(),405);
+        assertEquals(getResponseHeaders(),headers);
+        assertArrayEquals(getResponseBody(),"".getBytes());
+
+    }
+    @Test
+    public void checkThatEchoBodyRouteIsSetupCorrectly (){
+
+        Handler handler = router.getRoutes().get("/echo_body").getHandler("POST");
+        handler.setResponseValues(request,response);
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type", "text/html");
+
+
+        assertTrue(routes.contains("/echo_body"));
+        assertEquals(getResponseStatusCode(),200);
+        assertEquals(getResponseHeaders(),headers);
+        System.out.println("response body = "+getResponseBody());
+        assertArrayEquals(getResponseBody(),getResponseBody());
+
+    }
+
+    // Test for Routes that do not exist:
+
+    @Test
+    public void checkThatRouteDoesNotExistAndReturnsErrorCode (){
+
+        Handler handler = router.getRoutes().get("/hello_world").getHandler("GET");
+        handler.setResponseValues(request,response);
+
+
+        assertTrue(routes.contains("/hello_world"));
+        assertEquals(getResponseStatusCode(),404);
+
+
+    }
 
 
 

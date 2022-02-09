@@ -1,10 +1,10 @@
 package http.handlers;
 
 import http.helper.Handler;
-import http.helper.Utils;
+
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public interface OptionsHandler {
     static Handler getHandler(Set<String> methods) {
@@ -16,9 +16,8 @@ public interface OptionsHandler {
         });
     }
 
-    static String createOptionsHeader(Set<String> methods) {
+    private static String createOptionsHeader(Set<String> methods) {
         ArrayList<String> methodsList = new ArrayList<>(methods);
-        Collections.sort(methodsList);
         return String.join(", ",methodsList);
 
     }

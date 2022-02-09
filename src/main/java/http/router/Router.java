@@ -1,11 +1,13 @@
 package http.router;
 
 
+import http.handlers.MethodNotAllowedHandler;
 import http.handlers.RouteNotFound;
 import http.helper.Handler;
 import http.helper.Messages;
 import http.helper.Utils;
 import http.request.Request;
+import http.request.RequestParser;
 import http.response.Response;
 
 import java.io.*;
@@ -27,21 +29,35 @@ public class Router {
         BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         Response response = new Response(output);
 
-        try {
-            String[] parsedRequest = parseRequest(reader.readLine());
-            Request request = buildRequest(parsedRequest[0], parsedRequest[1], parsedRequest[2]);
-            response.setProtocol(parsedRequest[2]);
+        try{
+            Request request = new RequestParser(reader).buildRequest();
+            response.setProtocol(request.getProtocol());
             Handler handler = fetchHandler(request);
             handler.setResponseValues(request, response);
-        } catch (Error err) {
+
+
+
+        }catch (Error err){
             System.out.println(err);
         }
 
-
+//        try {
+//            String[] parsedRequest = parseRequest(reader.readLine());
+//            System.out.println(Arrays.toString(parsedRequest));
+//            Request request = buildRequest(parsedRequest[0], parsedRequest[1], parsedRequest[2]);
+//            response.setProtocol(parsedRequest[2]);
+//            Handler handler = fetchHandler(request);
+//            handler.setResponseValues(request, response);
+//        } catch (Error err) {
+//            System.out.println(err);
+//        }
+//
+//
         response.sendResponse();
 
 
     }
+
 
 
     public Route addRoute(String path, String method, Handler handler) {

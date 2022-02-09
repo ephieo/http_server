@@ -1,9 +1,7 @@
 package http.response;
 
-import http.helper.Utils;
-
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+
 import java.util.*;
 
 public class Response {
@@ -59,17 +57,16 @@ public class Response {
         return this.body;
     }
 
-
-    public void sendResponse() throws IOException {
-//        headers.put("Keep-Alive","1000");
-        headers.put("Date","Mon, 04 Nov 2019 11:59:33 GMT");
+    private byte[] buildResponse () throws IOException {
         headers.put("Connection", "Close");
         BuildResponse build = new BuildResponse();
         byte[] response = build.buildResponseBody(protocol, statusCode, statusMessage, headers, body);
-//        Utils.print("response is built.....\n\r" + new String(response, StandardCharsets.UTF_8));
+        return response;
+    }
 
+    public void sendResponse() throws IOException {
 
-        output.write(response);
+        output.write(buildResponse());
 
     }
 

@@ -2,13 +2,13 @@ package http.handlers;
 
 import http.helper.Handler;
 
-
-
-public interface RouteNotFound {
+public interface MethodNotAllowedHandler {
     static Handler getHandler (){
         return ((request,response)->{
-            response.setStatus(404,"Not Found");
+            response.setStatus(405,"Method Not Allowed");
+            response.addHeaders("Content-Type", "text/html");
             response.setBody("".getBytes());
+            
         });
     }
 }
