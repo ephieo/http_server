@@ -1,11 +1,8 @@
 package http.router;
 
-
-import http.handlers.MethodNotAllowedHandler;
 import http.handlers.RouteNotFound;
 import http.helper.Handler;
-import http.helper.Messages;
-import http.helper.Utils;
+
 import http.request.Request;
 import http.request.RequestParser;
 import http.response.Response;
@@ -14,7 +11,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.*;
 
-import static http.request.RequestParser.*;
+
 
 public class Router {
     private Map<String, Route> routes = new HashMap<>();
