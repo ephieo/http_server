@@ -44,7 +44,6 @@ public class Router {
     }
 
 
-
     public Route addRoute(String path, String method, Handler handler) {
         Route route = routes.computeIfAbsent(path, (key) -> new Route());
         route.addHandler(method, handler);

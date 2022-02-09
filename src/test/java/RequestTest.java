@@ -31,12 +31,14 @@ public class RequestTest {
         request.setPath("/hello");
         request.setHeaders("Content-Length","11");
         request.setBody("hello");
+        request.setProtocol("HTTP/1.1");
 
 
         assertEquals(request.getMethod(),"GET");
         assertEquals(request.getPath(),"/hello");
         assertEquals(request.getHeaders().get("Content-Length"),"11");
         assertEquals(request.getBody(),"hello");
+        assertEquals(request.getProtocol(),"HTTP/1.1");
 
     }
 }
