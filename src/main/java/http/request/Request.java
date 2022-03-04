@@ -6,7 +6,15 @@ public class Request {
     private String method;
     private String path;
     private Map<String, String> headers = new HashMap<>();
-    private String body;
+    private String body = "";
+    private String protocol;
+
+    public String getProtocol(){
+        return this.protocol;
+    }
+    public void setProtocol (String protocol){
+        this.protocol = protocol;
+    }
 
     public String getMethod (){
         return this.method;

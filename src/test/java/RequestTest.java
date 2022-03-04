@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 
-import static http.request.RequestParser.requestReader;
+//import static http.request.RequestParser.requestReader;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ public class RequestTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
-        requestReader(reader);
+//        requestReader(reader);
 
         assertEquals("http.Server received : done\noutput read", output.toString().trim());
     }
@@ -31,12 +31,14 @@ public class RequestTest {
         request.setPath("/hello");
         request.setHeaders("Content-Length","11");
         request.setBody("hello");
+        request.setProtocol("HTTP/1.1");
 
 
         assertEquals(request.getMethod(),"GET");
         assertEquals(request.getPath(),"/hello");
         assertEquals(request.getHeaders().get("Content-Length"),"11");
         assertEquals(request.getBody(),"hello");
+        assertEquals(request.getProtocol(),"HTTP/1.1");
 
     }
 }
